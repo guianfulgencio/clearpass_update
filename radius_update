@@ -1,0 +1,22 @@
+Configure terminal
+no aaa group server radius AAA
+no radius server GBA_RadiusVIP
+no radius server LAG_RadiusVIP
+no radius server WAR_RadiusVIP
+
+radius server LAG_RadiusVIP
+address ipv4 146.42.253.49 auth-port 1812 acct-port 1813key
+radius server GBA_RadiusVIP
+address ipv4 146.42.250.28 auth-port 1812 acct-port 1813 key
+radius server WAR_RadiusVIP
+address ipv4 146.42.159.20 auth-port 1812 acct-port 1813 key
+
+radius-server dead-criteria time 5 tries 3
+radius-server timeout 60
+radius-server deadtime 15
+
+aaa group server radius AAA
+server name LAG_RadiusVIP
+server name GBA_RadiusVIP
+server name WAR_RadiusVIP
+ip radius source-interface Vlan50
