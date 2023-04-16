@@ -5,7 +5,7 @@ no radius server LAG_RadiusVIP
 no radius server WAR_RadiusVIP
 
 radius server LAG_RadiusVIP
-address ipv4 146.42.253.49 auth-port 1812 acct-port 1813key
+address ipv4 146.42.253.49 auth-port 1812 acct-port 1813 key
 radius server GBA_RadiusVIP
 address ipv4 146.42.250.28 auth-port 1812 acct-port 1813 key
 radius server WAR_RadiusVIP
