@@ -1,3 +1,38 @@
+Updated: Access Switch: 
+CABA
+
+radius server angola_publisher_virtual
+ address ipv4 146.42.34.73 auth-port 1812 acct-port 1813
+ key 7 10631A3B2B37003E0E247372
+radius server angola_subscriber_virtual 
+ address ipv4 146.42.69.72 auth-port 1812 acct-port 1813
+ key 7 0526152D0F6C5C3C1B254E4B
+
+aaa group server radius AAA
+ no server name angola_publisher_virtual
+ no name angola_subscriber_virtual
+ server name angola_publisher_virtual
+ server name angola_subscriber_virtual
+
+LUA
+
+radius server angola_publisher_virtual
+ address ipv4 146.42.34.73 auth-port 1812 acct-port 1813
+ key 7 09615D2B37250527092C5D73
+radius server angola_subscriber_virtual
+ address ipv4 146.42.69.72 auth-port 1812 acct-port 1813
+ key 7 0722326E60290B3015325255
+
+aaa group server radius AAA
+ no server name angola_publisher_virtual
+ no name angola_subscriber_virtual
+ server name angola_publisher_virtual
+ server name angola_subscriber_virtual
+
+CLI verification: show authen sessions
+
+
+====
 Configure terminal
 no aaa group server radius AAA
 no radius server GBA_RadiusVIP
@@ -21,8 +56,6 @@ server name LAG_RadiusVIP
 server name GBA_RadiusVIP
 server name WAR_RadiusVIP
 ip radius source-interface Vlan50
-
-
 =======================================
 CABA0SL01-CABCLINIC1#sh run | inc radius       
 aaa group server radius AAA
