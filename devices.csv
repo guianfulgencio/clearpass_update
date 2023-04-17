@@ -1,2 +1,2 @@
-device_type,ip
-cisco_ios,172.20.10.12
+Device Name,IP Address,site
+csr1kv2,172.20.10.12,CABA
