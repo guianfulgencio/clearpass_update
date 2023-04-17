@@ -20,3 +20,75 @@ server name LAG_RadiusVIP
 server name GBA_RadiusVIP
 server name WAR_RadiusVIP
 ip radius source-interface Vlan50
+
+
+=======================================
+CABA0SL01-CABCLINIC1#sh run | inc radius       
+aaa group server radius AAA
+aaa server radius dynamic-author
+radius-server dead-criteria time 5 tries 3
+radius-server host 146.42.32.69 auth-port 1812 acct-port 1813 key 7 062B1C03626E1B2C07374B52
+radius-server host 146.42.60.3 auth-port 1812 acct-port 1813 key 7 062B1C03626E1B2C07374B52
+radius-server timeout 60
+radius-server deadtime 480
+radius-server vsa send accounting
+radius-server vsa send authentication
+
+=====================================
+commands
+CABA0SL01-CABCLINIC1#show authentication sessions 
+
+Interface  MAC Address     Method   Domain   Status         Session ID
+Gi1/0/11   (unknown)       dot1x    DATA     Authz Success  922A540200001777EE0DD00F
+Gi1/0/1    (unknown)       mab      UNKNOWN  Running        922A5402000019563495807F
+Gi1/0/15   001e.7ac3.313d  mab      VOICE    Authz Success  922A5402000018F925C50FF9
+Gi1/0/9    00d8.6162.6a66  dot1x    DATA     Authz Success  922A540200001951348C3B79
+Gi1/0/4    000f.e503.010c  mab      DATA     Authz Success  922A540200000D9948D6E0F3
+Gi1/0/19   806d.971b.eae4  dot1x    DATA     Authz Success  922A540200001954348F30F0
+Gi1/0/14   4c71.0d63.9e8c  mab      DATA     Authz Success  922A5402000000190002790B
+Gi1/0/17   f4a8.0d2b.4477  dot1x    DATA     Authz Success  922A54020000194F348817E3
+Gi1/0/21   00d8.6162.6a56  dot1x    DATA     Authz Success  922A54020000194A347AA526
+Gi1/0/19   001e.7ac3.3a70  mab      VOICE    Authz Success  922A5402000019252673D3CB
+Gi1/0/5    5017.ff96.4230  mab      VOICE    Authz Success  922A540200001799F6DEDF69
+Gi1/0/7    a8b1.d4fb.daa2  mab      VOICE    Authz Success  922A54020000000B000152EB
+Gi1/0/2    2c36.f858.7008  mab      VOICE    Authz Success  922A54020000172CDE75F6F4
+Gi1/0/10   f84f.5794.189f  mab      VOICE    Authz Success  922A54020000001000018CEB
+Gi1/0/18   001e.7ac2.ba2f  mab      VOICE    Authz Success  922A540200000006000147C7
+Gi1/0/3    4c71.0d63.9b30  mab      DATA     Authz Success  922A540200000018000277D5
+Gi1/0/5    482a.e341.c403  dot1x    DATA     Authz Success  922A54020000194533608AE7
+Gi1/0/9    001e.7ac3.32eb  mab      VOICE    Authz Success  922A54020000163EC87F6427
+Gi1/0/21   001e.7ac3.a84d  mab      VOICE    Authz Success  922A54020000001600020BBB
+Gi1/0/17   0c85.25a6.d33c  mab      VOICE    Authz Success  922A5402000018DC22CD18E3
+Gi1/0/12   7c95.f3c9.0ff1  mab      VOICE    Authz Success  922A54020000000E00016006
+
+CABA0SL01-CABCLINIC1#show aaa servers 
+
+RADIUS: id 1, priority 1, host 146.42.32.69, auth-port 1812, acct-port 1813
+     State: current UP, duration 395658s, previous duration 28800s
+     Dead: total time 28800s, count 1
+     Quarantined: No
+     Authen: request 50711, timeouts 306
+             Response: unexpected 0, server error 0, incorrect 0, time 95ms
+             Transaction: success 50405, failure 0
+     Author: request 0, timeouts 0
+             Response: unexpected 0, server error 0, incorrect 0, time 0ms
+             Transaction: success 0, failure 0
+     Account: request 8120, timeouts 78
+             Response: unexpected 0, server error 0, incorrect 0, time 25ms
+             Transaction: success 8042, failure 1
+     Elapsed time since counters last cleared: 8w3d22h0m
+
+RADIUS: id 2, priority 2, host 146.42.60.3, auth-port 1812, acct-port 1813
+     State: current UP, duration 4294967s, previous duration 0s
+     Dead: total time 0s, count 0
+     Quarantined: No
+     Authen: request 133, timeouts 0
+             Response: unexpected 0, server error 0, incorrect 0, time 11ms
+             Transaction: success 133, failure 0
+     Author: request 0, timeouts 0
+             Response: unexpected 0, server error 0, incorrect 0, time 0ms
+             Transaction: success 0, failure 0
+     Account: request 29, timeouts 0
+             Response: unexpected 0, server error 0, incorrect 0, time 17ms
+             Transaction: success 29, failure 0
+     Elapsed time since counters last cleared: 8w3d22h0m
